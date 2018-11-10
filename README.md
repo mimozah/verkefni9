@@ -1,8 +1,8 @@
-Javascript project
+# Verkefni 9
 
-Implement the search and publication of domains through apis.is. 
-http://apis.is/isnic?domain=hi.is searches for e.g. the information about hi.is and returns an item, for example:
+Útfæra skal leit og birtingu á lénum gegnum `apis.is`. `http://apis.is/isnic?domain=hi.is` leitar t.d. að upplýsingum um `hi.is` og skilar til baka hlut, t.d.:
 
+```javascript
 {
   "results": [
     {
@@ -13,37 +13,88 @@ http://apis.is/isnic?domain=hi.is searches for e.g. the information about hi.is 
     "postalCode": "101",
     "country": "IS",
     "phone": "",
+    "email": "hostmaster@hi.is",
     "registered": "11. December 1986",
     "expires": "11. December 2018",
     "lastChange": "29. November 2017"
     }
   ]
 }
+```
 
+Gefinn er HTML og CSS grunnur með útliti sem ekki ætti að þurfa að breyta.
 
-An HTML and CSS foundation is provided with an appearance that should not be edited.
+Leit skal:
 
-The search shall:
-Only allow to search if value in <input> is not a empty, otherwise the message will be displayed: Domain must be a string (Lén verður að vera strengur)
-Publish the message Searching for domain(Leita að léni) ... along with image loading.gif while searching, see .loading class
+* Aðeins leyfa að leita ef gildi í `<input>` er ekki tómistrengur, annars skal birta skilaboðin `Lén verður að vera strengur`
+* Birta skilaboðin `Leita að léni...` ásamt mynd `loading.gif` meðan leitað er, sjá `.loading` class
 
-Error handling:
-If an error occurs at apis.is or a connection, an error should be displayed to retrieve data
-If no domain name is found, display: Domain is not registered(Lén er ekki skráð)
+Villumeðhöndlun:
 
-All domains found must be displayed:
-Lén (domain)
-Skráð (registered)
-Seinast breytt (lastChange)
-Rennur út (expires)
-If data is defined, it should also display:
+* Ef villa kemur upp hjá `apis.is` eða við tengingu skal birta `Villa við að sækja gögn`
+* Ef ekkert lén finnst skal birta `Lén er ekki skráð`
 
-Skráningaraðili (registrantname)
-Netfang (email)
-Heimilisfang (address)
-Land (country)
-Dates must be published as ISO 8601 Dates (YYYY-MM-DD).
+Birta skal fyrir öll lén sem finnast:
 
-Implement the JavaScript functionality within the model given.
+* Lén (`domain`)
+* Skráð (`registered`)
+* Seinast breytt (`lastChange`)
+* Rennur út (`expires`)
 
-The website is in Icelandic but I have translated the words so it should not be difficult to understand what is going on. A demo video is also included to see how it should work.
+Ef gögn eru skilgreind skal einnig birta:
+
+* Skráningaraðili (`registrantname`)
+* Netfang (`email`)
+* Heimilisfang (`address`)
+* Land (`country`)
+
+Dagsetningar skal birta sem [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) dagsetningar (`YYYY-MM-DD`).
+
+Útfæra skal JavaScript virkni innan þess módúl sem gefinn er.
+
+`browser-sync` er uppsett í verkefninu:
+
+```bash
+npm install
+npm run dev
+```
+
+Sjá dæmi í `demo.mp4`.
+
+Ef apis.is fer niður er gefið dæmi í `example.json` sem hægt er að sækja í stað gagna með því að vísa beint í það skjal fyrir allar fyrirspurnir.
+
+## eslint
+
+Setja þarf upp `eslint` með airbnb style guide. `eslint` ætti að keyra þegar `npm test` er keyrt og linta allar javascript skrár.
+
+Leyfilegt er að slökkva á villum tengum `for of` ítrunum með `/* eslint-disable-line */`, einnig er í lagi að nota það eða leyfa almennt `console.error`. Ekki ætti að nota það fyrir annað, heldur laga villu sem koma upp.
+
+## Mat
+
+* 20% – Snyrtilegt JavaScript með `eslint` uppsett og án villna
+* 30% – Leit eftir lénum
+* 30% – Niðurstöður birtar
+* 20% – Villumeðhöndlun
+
+## Sett fyrir
+
+Verkefni sett fyrir í fyrirlestri mánudaginn 5. nóvember 2018.
+
+## Skil
+
+Skila skal undir „Verkefni og hlutaprófa“ á Uglu í seinasta lagi fyrir lok dags þriðjudaginn 13. nóvember 2018.
+
+Skilaboð skulu innihalda:
+
+* Slóð á verkefni á heimasvæði
+* Slóð á GitHub repo fyrir verkefni, og dæmatímakennurum skal hafa verið boðið í repo ([sjá leiðbeiningar](https://help.github.com/articles/inviting-collaborators-to-a-personal-repository/)). Notendanöfn þeirra eru `arnar44`, `mimiqkz`, `gorri4`, `hinriksnaer`, `gunkol`, `freyrdanielsson`, `osk`
+
+## Einkunn
+
+Sett verða fyrir tíu minni verkefni þar sem átta bestu gilda 3,5% hvert, samtals 28% af lokaeinkunn.
+
+Sett verða fyrir tvö hópverkefni þar sem hvort um sig gildir 11%, samtals 22% af lokaeinkunn.
+
+---
+
+> Útgáfa 0.1
